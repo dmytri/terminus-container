@@ -11,9 +11,7 @@
 
 # TerminusDB Server Container Control
 
-This is a simple convenience script to run terminus-server as a docker container
-
-This instructions are for linux or similar
+This is a simple convenience script to run terminus-server as a docker container. These instructions are for linux or similar
 
 What the heck is TerminusDB? See here: https://terminusdb.com
 
