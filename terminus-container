@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#
+# CONFIG
+#
+
+CONTAINER=terminus-server
+REPOSITORY=terminusdb/terminus-server
+TAG=latest
+
+SERVER=localhost
+PORT=6363:6363
+PASS=root
+
+#
+# PROCESS ARGS
+#
+
+printf "\n"
+
+if [ ! -z "$1" ]; then
+  case "$1" in
+    "pull")
+    sudo docker pull $REPOSITORY:$TAG
+    ;;
+    "create")
+    sudo docker create --name $CONTAINER \
+      -p $PORT -e SERVER_NAME=$SERVER -e \
+      DB_PASS=$PASS -t \
+      $REPOSITORY:$TAG \
+      && printf "terminus-server container created\n" \
+      || printf "\nHas the container already been created?\n"
+    ;;
+    "rm")
+    sudo docker rm $CONTAINER > /dev/null \
+      && printf "terminus-server container removed\n" \
+      || printf "\nHas the container been created?\n"
+    ;;
+    "start")
+    sudo docker start $CONTAINER > /dev/null \
+      && printf "terminus-server container started\n" \
+      || printf "\nHas the container been created?\n"
+    ;;
+    "stop")
+    sudo docker stop $CONTAINER > /dev/null \
+      && printf "terminus-server container stopped" \
+      || printf "\nHas the container been created?\n"
+    ;;
+    *)
+    printf "invalid command\n"
+    ;;
+  esac
+else
+  printf "\
+USAGE:
+  terminus-container [COMMAND]
+
+  pull    pull from dockerhub
+  create  create container
+  rm      remove container
+  start   start cotainer
+  stop    stop container"
+fi
+
+printf "\n"
+
+# vim: set filetype=sh :
