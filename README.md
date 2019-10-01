@@ -32,7 +32,7 @@ $ git clone https://github.com/dmytri/terminus-container
 $ cd terminus-container
 ```
 
-## pull the image
+## Pull the image
 
 ```
 $ ./terminus-container pull
