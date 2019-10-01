@@ -79,4 +79,7 @@ USAGE:
   start   start container
   stop    stop container
 ```
+Oh, and flattery motivates us, please give us a star here: https://github.com/terminusdb/terminus-server
+
+
 
