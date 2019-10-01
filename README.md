@@ -25,7 +25,7 @@ Obvs, you need to have docker running.
 
 Since letting unprivileged users run docker is like insecure and all, this script uses sudo, so get your sudoers on.
 
-## Get this this script, cd to it, make executable
+## Get this script, cd to it, make executable
 
 ```
 $ git clone https://github.com/dmytri/terminus-container
