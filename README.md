@@ -28,7 +28,7 @@ Since letting unprivileged users run docker is like insecure and all, this scrip
 ## Get this this script and cd to it
 
 ```
-$ git clone https:
+$ git clone https://github.com/dmytri/terminus-container
 $ cd terminus-container
 ```
 
