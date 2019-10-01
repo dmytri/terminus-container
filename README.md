@@ -76,7 +76,7 @@ USAGE:
   pull    pull from dockerhub
   create  create container
   rm      remove container
-  start   start cotainer
+  start   start container
   stop    stop container
 ```
 
