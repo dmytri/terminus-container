@@ -66,19 +66,21 @@ terminus-server container started
 ```
 Ready to terminate? Go here: http://localhost:6363/dashboard
 
-## To stop, restart, remove the container see usage
+## To stop, restart, remove, etc, see usage
 ```
 $ ./terminus-container 
 
 USAGE:
   terminus-container [COMMAND]
 
+  help      show usage
   pull      pull from dockerhub
   create    create container
   rm        remove container
   start     start container
   stop      stop container
   restart   restart container
+  stats     show container stats
 ```
 Oh, and flattery motivates us, please give us a star here: https://github.com/terminusdb/terminus-server
 
