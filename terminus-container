@@ -13,6 +13,23 @@ PORT=6363:6363
 PASS=root
 
 #
+# functions
+#
+
+usage () {
+  printf "\
+USAGE:
+  terminus-container [COMMAND]
+
+  pull      pull from dockerhub
+  create    create container
+  rm        remove container
+  start     start container
+  stop      stop container
+  restart   restart container\n"
+}
+
+#
 # PROCESS ARGS
 #
 
@@ -43,7 +60,12 @@ if [ ! -z "$1" ]; then
     ;;
     "stop")
     sudo docker stop $CONTAINER > /dev/null \
-      && printf "terminus-server container stopped" \
+      && printf "terminus-server container stopped\n" \
+      || printf "\nHas the container been created?\n"
+    ;;
+    "restart")
+    sudo docker stop $CONTAINER > /dev/null \
+      && printf "terminus-server container restarted\n" \
       || printf "\nHas the container been created?\n"
     ;;
     *)
@@ -51,15 +73,7 @@ if [ ! -z "$1" ]; then
     ;;
   esac
 else
-  printf "\
-USAGE:
-  terminus-container [COMMAND]
-
-  pull    pull from dockerhub
-  create  create container
-  rm      remove container
-  start   start container
-  stop    stop container"
+  usage
 fi
 
 printf "\n"
