@@ -21,12 +21,14 @@ usage () {
 USAGE:
   terminus-container [COMMAND]
 
+  help      show usage
   pull      pull from dockerhub
   create    create container
   rm        remove container
   start     start container
   stop      stop container
-  restart   restart container\n"
+  restart   restart container
+  stats     show container stats\n"
 }
 
 #
@@ -38,38 +40,45 @@ printf "\n"
 if [ ! -z "$1" ]; then
   case "$1" in
     "pull")
-    sudo docker pull $REPOSITORY:$TAG
+      sudo docker pull $REPOSITORY:$TAG
     ;;
     "create")
-    sudo docker create --name $CONTAINER \
-      -p $PORT -e SERVER_NAME=$SERVER -e \
-      DB_PASS=$PASS -t \
-      $REPOSITORY:$TAG \
-      && printf "terminus-server container created\n" \
-      || printf "\nHas the container already been created?\n"
+      sudo docker create --name $CONTAINER -p $PORT -t \
+        -e SERVER_NAME=$SERVER \
+        -e DB_PASS=$PASS \
+        $REPOSITORY:$TAG \
+        && printf "terminus-server container created\n" \
+        || printf "\nHas the container already been created?\n"
     ;;
     "rm")
-    sudo docker rm $CONTAINER > /dev/null \
-      && printf "terminus-server container removed\n" \
-      || printf "\nHas the container been created?\n"
+      sudo docker rm $CONTAINER > /dev/null \
+        && printf "terminus-server container removed\n"
     ;;
     "start")
-    sudo docker start $CONTAINER > /dev/null \
-      && printf "terminus-server container started\n" \
-      || printf "\nHas the container been created?\n"
+      sudo docker start $CONTAINER > /dev/null \
+        && printf "terminus-server container started\n" \
+        || printf "\nHas the container been created?\n"
     ;;
     "stop")
-    sudo docker stop $CONTAINER > /dev/null \
-      && printf "terminus-server container stopped\n" \
-      || printf "\nHas the container been created?\n"
+      sudo docker stop $CONTAINER > /dev/null \
+        && printf "terminus-server container stopped\n" \
+        || printf "\nHas the container been created?\n"
     ;;
     "restart")
-    sudo docker stop $CONTAINER > /dev/null \
-      && printf "terminus-server container restarted\n" \
-      || printf "\nHas the container been created?\n"
+      sudo docker stop $CONTAINER > /dev/null \
+        && printf "terminus-server container restarted\n" \
+        || printf "\nHas the container been created?\n"
+    ;;
+    "stats")
+      sudo docker stats $CONTAINER \
+        || printf "\nHas the container been created?\n"
+    ;;
+    "help")
+      usage
     ;;
     *)
-    printf "invalid command\n"
+      printf "invalid command\n\n"
+      usage
     ;;
   esac
 else
