@@ -22,12 +22,10 @@ USAGE:
   terminus-container [COMMAND]
 
   help      show usage
-  pull      pull from dockerhub
-  create    create container
-  rm        remove container
-  start     start container
+  run       run container
   stop      stop container
   restart   restart container
+  attach    attach to prolog shell
   stats     show container stats\n"
 }
 
